@@ -5,8 +5,8 @@
 
 function calculateDistance(lat2, lon2) {
   var R = 3959; // radius of Earth in miles
-  var lat1 = 47.3193057;
-  var lon1 = -93.2895824;
+  var lat1 = 37.7793180; // San Francisco latitude
+  var lon1 = -122.4191410; // San Francisco longitude
   var dLat = (lat2 - lat1).toRad();
   var dLon = (lon2 - lon1).toRad(); 
   var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -21,10 +21,9 @@ Number.prototype.toRad = function() {
   return this * Math.PI / 180;
 }
 
-window.onload = function() {
+window.addEventListener("load", function() {
   navigator.geolocation.getCurrentPosition (function (position) {
-    document.getElementById ('visitus').style.display = 'block';
     document.getElementById ('distance').innerHTML =
       calculateDistance(position.coords.latitude, position.coords.longitude);
   });
-};
+}, false);
